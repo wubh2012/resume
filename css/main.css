@@ -1,0 +1,219 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    background-color: #efefef;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.clearfix::after {
+    content: '';
+    display: block;
+    clear: both;
+}
+
+.topNavBar {
+    position: fixed;
+    padding: 20px 0;
+    width: 100%;
+
+}
+
+.topNavBar .topNavBar-inner {
+    padding: 0 16px;
+}
+
+.topNavBar .logo {
+    display: block;
+    float: left;
+    padding: 3px 0 4px 0;
+    font-family: 'Arial Black';
+    font-size: 24px;
+}
+
+.topNavBar .logo .rs {
+    color: #E8676B;
+}
+
+.topNavBar .logo .card {
+    color: #C3C4C7;
+}
+
+.topNavBar nav {
+    float: right;
+}
+
+.topNavBar nav>ul {
+    list-style: none;
+}
+
+.topNavBar nav>ul>li {
+    float: left;
+    margin: 0 17px;
+}
+
+.topNavBar nav>ul>li>a {
+    display: block;
+    padding: 8px 0;
+    color: #C3C4C7;
+    font-weight: bold;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    font-size: 12px;
+}
+
+.topNavBar nav>ul>li>a:hover {
+    border-bottom: 4px solid#E8676B;
+}
+
+.banner {
+    background-image: url(../images/rs-cover.jpg);
+    height: 515px;
+    background-position: center;
+    background-size: cover;
+}
+
+.banner .mask {
+    height: 515px;
+    background-color: rgba(44, 51, 64, 0.8);
+}
+
+main {
+    margin-top: -345px;
+}
+
+.usercard {
+    max-width: 930px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    box-shadow: 1px 1px 10px 0px rgba(0, 0, 0, 0.4);
+}
+
+.usercard .pictureAndText {
+    padding: 56px 50px;
+}
+
+.usercard .picture {
+    float: left;
+}
+
+.usercard .text {
+    float: left;
+    margin-left: 60px;
+    width: 470px;
+}
+
+.usercard .welcome {
+    position: relative;
+    display: inline-block;
+    padding: 7px 12px;
+    margin-bottom: 28px;
+    color: white;
+    background-color: #E8676B;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.usercard .welcome .triangle {
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    top: 100%;
+    left: 4px;
+    border: 10px solid transparent;
+    border-left-width: 0px;
+    border-top-color: #E8676B;
+}
+
+.usercard p {
+    padding-top: 12px;
+}
+
+.usercard hr {
+    width: 100%;
+    height: 0;
+    margin: 25px 0;
+    border: none;
+    border-top: 1px solid #ccc;
+}
+
+.usercard dl dt,
+.usercard dl dd {
+    float: left;
+    display: block;
+    padding: 12px 0;
+}
+
+.usercard dl dt {
+    width: 30%;
+    font-weight: bold;
+}
+
+.usercard dl dd {
+    width: 70%;
+    color: #9da0a7;
+}
+
+.usercard .media {
+    background-color: #E8676B;
+    text-align: center;
+    padding: 15px;
+}
+
+.usercard .media a {
+    display: inline-block;
+    margin: 0 17px;
+    width: 40px;
+    padding: 5px 0;
+    line-height: 30px;
+    border-radius: 50%;
+}
+
+.usercard .media a:hover {
+    background-color: #D05C60;
+}
+
+.usercard .media svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    vertical-align: middle;
+}
+
+main .download-wrapper {
+    text-align: center;
+    margin: 58px 0;
+}
+
+main .downloadbutton {
+    padding: 21px 55px;
+    border: 1px solid #cbcdcf;
+    font-weight: bold;
+    color: #3d4451;
+    font-size: 14px;
+    line-height: 16px;
+    border-radius: 2px;
+    background-color: #EFEFEF;
+    transition: box-shadow 0.3s;
+}
+
+main .downloadbutton:hover {
+    box-shadow: 2px 4px 12px 0px rgba(0, 0, 0, 0.37);
+}
+
+main .selfIntroduction {
+    max-width: 930px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 20px;
+    line-height: 36px;
+}
