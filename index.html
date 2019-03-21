@@ -106,7 +106,7 @@
             <a class="downloadbutton" href="resume.pdf" target="_blank" download>下载 PDF 简历</a>
         </p>
         <p class="selfIntroduction">
-            王大全， 资深前端工程师
+            王大全， 前端工程师
             <br> 技能：前端开发，.NET 开发，Node.js 开发
         </p>
         <section class="skills">
@@ -115,37 +115,37 @@
                 <li>
                     <div class="bar-data"> HTML 5 &amp; CSS 3</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 50%;"></div>
                     </div>
                 </li>
                 <li>
                     <div class="bar-data"> JavaScript</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 60%;"></div>
                     </div>
                 </li>
                 <li>
                     <div class="bar-data"> jQuery</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 80%;"></div>
                     </div>
                 </li>
                 <li>
                     <div class="bar-data"> Vue</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 53%;"></div>
                     </div>
                 </li>
                 <li>
                     <div class="bar-data"> React</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 41%;"></div>
                     </div>
                 </li>
                 <li>
                     <div class="bar-data"> HTTP</div>
                     <div class="bar-progress">
-                        <div class="progress"></div>
+                        <div class="progress" style="width: 30%;"></div>
                     </div>
                 </li>
             </ol>
@@ -154,24 +154,40 @@
             <h2>作品集</h2>
             <nav>
                 <ol class="clearfix">
-                    <li>所有</li>
-                    <li>框架</li>
-                    <li>原生JS&amp;CSS</li>
+                    <li id="portfolio1">所有</li>
+                    <li id="portfolio2">框架</li>
+                    <li id="portfolio3">原生JS&amp;CSS</li>
                 </ol>
-                <div class="bar bar-stata3">
+                <div id="portfoliobar" class="bar bar-state1">
                     <div class="bar-inner"></div>
                 </div>
             </nav>
 
             <div class="jobs">
-                <div class="big"></div>
-                <div class="small"></div>
-                <div class="small"></div>
+                <div class="big">
+                    <img src="./images/1.jpg" alt="图片1">
+                </div>
+                <div class="small" style="top:0; left:634px;">
+                    <img src="./images/2.jpg" alt="图片1">
+                </div>
+                <div class="small" style="top:312px; left: 634px;">
+                    <img src="./images/3.jpg" alt="图片1">
+                </div>
             </div>
 
         </section>
     </main>
-
+    <script>
+        portfolio1.onclick = function () {
+            portfoliobar.className = "bar bar-state1";
+        }
+        portfolio2.onclick = function () {
+            portfoliobar.className = "bar bar-state2";
+        }
+        portfolio3.onclick = function () {
+            portfoliobar.className = "bar bar-state3";
+        }
+    </script>
 </body>
 
 </html>

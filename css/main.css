@@ -285,12 +285,14 @@ main .portfolio {
 .portfolio>nav>ol {
     display: inline-block;
     vertical-align: top;
+    margin-top: 40px;
     margin-bottom: 15px;
 }
 
 .portfolio>nav>ol>li {
     float: left;
     margin-left: 50px;
+    cursor: pointer;
 }
 
 .portfolio>nav>ol>li:first-child {
@@ -299,7 +301,8 @@ main .portfolio {
 
 .portfolio .bar {
     height: 5px;
-    background-color: #fff;
+    border-radius: 2px;
+    background-color: #fff;    
 }
 
 .portfolio .bar-inner {
@@ -307,16 +310,34 @@ main .portfolio {
     height: 5px;
     border-radius: 2px;
     background-color: #D05C60;
+    transition: all 0.3s;
 }
-.portfolio .bar-stata1 .bar-inner{
+.portfolio .bar-state1 .bar-inner{
     width: 50px;
     margin-left: 0;
 }
-.portfolio .bar-stata2 .bar-inner{
-    width: 50px;
-    margin-left: 80px;
+.portfolio .bar-state2 .bar-inner{
+    width: 55px;
+    margin-left: 75px;
 }
-.portfolio .bar-stata3 .bar-inner{
-    width: 100px;
+.portfolio .bar-state3 .bar-inner{
+    width: 95px;
     margin-left: 160px;
+}
+.portfolio .jobs{
+    position: relative;
+    height: 597px;
+    margin-top: 30px;
+}
+.portfolio .jobs .big,
+.portfolio .jobs .small {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.1);
+}
+.portfolio .jobs img{
+    border: 0;
+    
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 }
