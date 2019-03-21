@@ -273,8 +273,9 @@ main .portfolio {
     background-color: #D05C60;
 }
 
-.portfolio {
+main .portfolio {
     text-align: center;
+    margin-bottom: 100px;
 }
 
 .portfolio>nav {
@@ -337,7 +338,6 @@ main .portfolio {
     background: rgba(0, 0, 0, 0.1);
 }
 .portfolio .jobs img{
-    border: 0;
-    
+    border: 0;    
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 3px rgba(0, 0, 0, 0.24);
 }
