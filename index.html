@@ -28,13 +28,13 @@
       <nav>
         <ul class="clearfix">
           <li>
-            <a href="#">关于</a>
+            <a href="#site-usercard">关于</a>
           </li>
           <li>
-            <a href="#">技能</a>
+            <a href="#site-skills">技能</a>
           </li>
           <li>
-            <a href="#">作品</a>
+            <a href="#site-portfofio">作品</a>
           </li>
           <li>
             <a href="#">博客</a>
@@ -56,7 +56,7 @@
     <div class="mask"></div>
   </div>
   <main>
-    <div class="usercard">
+    <div class="usercard" id="site-usercard">
       <div class="pictureAndText clearfix">
         <div class="picture">
           <img src="images/avatar.jpg" alt="头像">
@@ -108,11 +108,11 @@
     <p class="download-wrapper">
       <a class="downloadbutton" href="resume.pdf" target="_blank" download>下载 PDF 简历</a>
     </p>
-    <p class="selfIntroduction">
+    <p class="selfIntroduction" >
       王大全， 前端工程师
       <br> 技能：前端开发，.NET 开发，Node.js 开发
     </p>
-    <section class="skills">
+    <section class="skills" id="site-skills">
       <h2>技能</h2>
       <ol class="clearfix">
         <li>
@@ -153,7 +153,7 @@
         </li>
       </ol>
     </section>
-    <section class="portfolio">
+    <section class="portfolio" id="site-portfofio">
       <h2>作品集</h2>
       <nav>
         <ol class="clearfix">
@@ -180,23 +180,7 @@
 
     </section>
   </main>
-  <script>
-    portfolio1.onclick = function () {
-      portfoliobar.className = "bar bar-state1";
-    }
-    portfolio2.onclick = function () {
-      portfoliobar.className = "bar bar-state2";
-    }
-    portfolio3.onclick = function () {
-      portfoliobar.className = "bar bar-state3";
-    }
-  </script>
-  <script>
-    //overlay.classList.remove('active');
-    setTimeout(function(){
-      overlay.classList.remove('active');
-    }, 1000);
-  </script>
+  <script src="./main.js"></script>
 </body>
 
 </html>
