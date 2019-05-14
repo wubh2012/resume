@@ -76,9 +76,16 @@ a {
   position: fixed;
   padding: 20px 0;
   width: 100%;
-
+  color: #C3C4C7;
+  transition: all 0.5s;
 }
-
+.topNavBar.sticky{
+    background-color: white;
+    padding: 10px 0;
+    z-index: 1;
+    box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.4);
+    color: #3d4451;
+}
 .topNavBar .topNavBar-inner {
   padding: 0 16px;
 }
@@ -101,6 +108,7 @@ a {
 
 .topNavBar nav {
   float: right;
+  padding-top: 2px;
 }
 
 .topNavBar nav>ul {
@@ -115,7 +123,7 @@ a {
 .topNavBar nav>ul>li>a {
   display: block;
   padding: 8px 0;
-  color: #C3C4C7;
+  /* color: inherit; */
   font-weight: bold;
   border-top: 4px solid transparent;
   border-bottom: 4px solid transparent;

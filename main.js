@@ -11,6 +11,7 @@ var portfolioEvent = function(){
     portfoliobar.className = "bar bar-state3";
   }
 }
+
 var loadingAnimation = function(){
   //overlay.classList.remove('active');
   setTimeout(function(){
@@ -52,10 +53,22 @@ var enableScrollPosition = function(){
   }
 }
 
+var autoStickNavBar = function(){
+    var topNavBar = document.querySelector('.topNavBar');
+    window.onscroll = function(xxx){
+        log(xxx)
+        if(window.scrollY > 0){
+            topNavBar.classList.add('sticky');
+        }else{
+            topNavBar.classList.remove('sticky');
+        }
+    }
+}
 
 var __main = function(){
-  portfolioEvent()
-  loadingAnimation()
-  enableScrollPosition()
+  portfolioEvent();
+  loadingAnimation();
+  enableScrollPosition();
+  autoStickNavBar();
 }
-__main()
+__main();
