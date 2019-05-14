@@ -53,14 +53,14 @@ a {
   right: 0;
   margin: auto;
   border-radius: 50%;
-  animation: s 1.6s linear infinite;
+  animation: loadings 1.6s linear infinite;
 }
 
 .loading::after {
   animation-delay: -0.8s;
 }
 
-@keyframes s {
+@keyframes loadings {
   0% {
     width: 0px;
     height: 0px;
@@ -92,7 +92,7 @@ a {
   background-color: white;
   padding: 10px 0;
   z-index: 1;
-  box-shadow: 1px 1px 10px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.4);
   color: #3d4451;
 }
 
