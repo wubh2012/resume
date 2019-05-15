@@ -1,5 +1,13 @@
 var log = console.log.bind(console);
 
+var toggleClass = function(element, className){
+  if(element.classList.contains(className)){
+    element.classList.remove(className)
+  }else{
+    element.classList.add(className)
+  }
+}
+
 var portfolioEvent = function () {
   portfolio1.onclick = function () {
     portfoliobar.className = "bar bar-state1";
@@ -75,16 +83,17 @@ var enableScrollPosition = function () {
 var autoStickNavbar = function () {
   var topNavBar = document.querySelector('.topNavBar');
   var stickNavbar = function(){
-    if (window.scrollY > 0) {
+    if (window.scrollY > 0) {      
       topNavBar.classList.add('sticky');
     } else {
-      topNavBar.classList.remove('sticky');      
+      topNavBar.classList.remove('sticky');
     }
   }
   stickNavbar();
-  window.onscroll = function (xxx) {
+  window.addEventListener('scroll', function(){
     stickNavbar()
-  }
+  });
+  
 }
 
 var findNextSibling = function (element) {
@@ -100,10 +109,12 @@ var displaySubmenu = function () {
   for (let index = 0; index < liTags.length; index++) {
     const element = liTags[index];
     element.addEventListener('mouseenter', function (event) {      
-      event.currentTarget.classList.add('active')
+      //event.currentTarget.classList.add('active')
+      toggleClass(event.currentTarget, 'active')
     });
     element.addEventListener('mouseleave', function (event) {
-      event.currentTarget.classList.remove('active')
+      // event.currentTarget.classList.remove('active')
+      toggleClass(event.currentTarget, 'active')
     })
   }
 }
@@ -115,16 +126,17 @@ var highlightElement = function(){
   for (let index = 0; index < hightlightItems.length; index++) {
     const element = hightlightItems[index];
     dict.push({index: index, offsetTop: element.offsetTop, id: element.id})
-    element.classList.add('offset')
+    //element.classList.add('offset')
+    toggleClass(element, 'offset')
   }
 
   // 模拟UserCard初始动画
   setTimeout(() => {
-    document.querySelector(`#${dict[0].id}`).classList.remove('offset');    
+    //document.querySelector(`#${dict[0].id}`).classList.remove('offset');    
+    toggleClass(document.querySelector(`#${dict[0].id}`), 'offset')
   }, 600);
   //log('当前所有特殊元素信息', dict)
-
-  window.onscroll = function(event){
+  window.addEventListener('scroll',function(){
     let minIndex = 0;
     let minOffsetTop = dict[0].offsetTop
     for (let index = 1; index < dict.length; index++) {
@@ -145,10 +157,11 @@ var highlightElement = function(){
     let liBrotherNodes = liTag.parentNode.children 
     for (let index = 0; index < liBrotherNodes.length; index++) {
       liBrotherNodes[index].classList.remove('highlight')
+      // toggleClass(liBrotherNodes[index], 'highlight')
     }
     liTag.classList.add('highlight')
-
-  }
+    // toggleClass(liTag, 'highlight')
+  });  
 
 }
 
