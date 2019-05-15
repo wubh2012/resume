@@ -16,14 +16,13 @@ var loadingAnimation = function () {
   //overlay.classList.remove('active');
   setTimeout(function () {
     overlay.classList.remove('active');
-  }, 1000);
+  }, 300);
 }
 
-function animate(time) {
+var animate = function (time) {
   requestAnimationFrame(animate);
   TWEEN.update(time);
 }
-requestAnimationFrame(animate);
 
 var enableScrollPosition = function () {
   let aTags = document.querySelectorAll('.topNavBar nav>ul>li>a');
@@ -65,14 +64,13 @@ var enableScrollPosition = function () {
         .to({y: targetY }, 1000) // Move to (200) in 1 second.
         .easing(TWEEN.Easing.Quadratic.Out) // Use an easing function to make the animation smooth.
         .onUpdate(function() { // Called after tween.js updates 'coords'.
-          window.scroll(0, coords.y);            
+          window.scroll(0, coords.y); 
         })
         .start(); // Start the tween immediately.
       }
     })
   }
 }
-
 
 var autoStickNavbar = function () {
   var topNavBar = document.querySelector('.topNavBar');
@@ -110,12 +108,59 @@ var displaySubmenu = function () {
   }
 }
 
+var highlightElement = function(){
+  
+  let dict = []
+  let hightlightItems = document.querySelectorAll('[data-x]')
+  for (let index = 0; index < hightlightItems.length; index++) {
+    const element = hightlightItems[index];
+    dict.push({index: index, offsetTop: element.offsetTop, id: element.id})
+    element.classList.add('offset')
+  }
+
+  // 模拟UserCard初始动画
+  setTimeout(() => {
+    document.querySelector(`#${dict[0].id}`).classList.remove('offset');    
+  }, 600);
+  //log('当前所有特殊元素信息', dict)
+
+  window.onscroll = function(event){
+    let minIndex = 0;
+    let minOffsetTop = dict[0].offsetTop
+    for (let index = 1; index < dict.length; index++) {
+      const data = dict[index];
+      if(Math.abs(data.offsetTop - window.scrollY) < Math.abs(minOffsetTop - window.scrollY)){
+        minIndex = index
+      }
+    }
+
+    // for (let index = 0; index < dict.length; index++) {
+    //   document.querySelector(`#${dict[index].id}`).classList.add('offset');
+    // }
+    document.querySelector(`#${dict[minIndex].id}`).classList.remove('offset');
+
+    // 处理导航栏中的 aTag 
+    let aTag = document.querySelector(`a[href="#${dict[minIndex].id}"]`)
+    let liTag = aTag.parentNode
+    let liBrotherNodes = liTag.parentNode.children 
+    for (let index = 0; index < liBrotherNodes.length; index++) {
+      liBrotherNodes[index].classList.remove('highlight')
+    }
+    liTag.classList.add('highlight')
+
+  }
+
+}
 
 var __main = function () {
+  // tween 需要的
+  requestAnimationFrame(animate);
+
   loadingAnimation();  
   autoStickNavbar();
   displaySubmenu();
   enableScrollPosition();
   portfolioEvent();
+  highlightElement();
 }
 __main();
