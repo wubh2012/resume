@@ -20,8 +20,7 @@ var portfolioEvent = function () {
   }
 }
 
-var loadingAnimation = function () {
-  //overlay.classList.remove('active');
+var initLoadPageAnimation = function () {
   setTimeout(function () {
     overlay.classList.remove('active');
   }, 300);
@@ -32,37 +31,22 @@ var animate = function (time) {
   TWEEN.update(time);
 }
 
-var enableScrollPosition = function () {
+var autoScrollElement = function () {
   let aTags = document.querySelectorAll('.topNavBar nav>ul>li>a');
-  // log(aTags)
   for (let index = 0; index < aTags.length; index++) {
     const element = aTags[index];
     element.addEventListener('click', function (event) {
-      // log(event);
-      // log(event.target.href)
       event.preventDefault();
       var a = event.currentTarget;
       var href = a.getAttribute('href');
       if (href !== '#') {
         var targetY = document.querySelector(href).offsetTop - 80;
-        //window.scroll(0, targetY - 80);
 
         // 1s播放24帧以上肉眼不容易识别 24fps
         let n = 25; // 每秒播放的次数
         let duration = 500 / n; // 每次播放的时间间隔
         let currentY = window.scrollY; // 当前文档已经滚动的像素
         
-        // let distance = (targetY - currentY) / n; //每次移动的距离
-        // let i = 0;
-        // let intervalId = setInterval(() => {
-        //   if (i === n) {
-        //     clearInterval(intervalId)
-        //     return;
-        //   }
-        //   i++;
-        //   window.scroll(0, currentY + distance * i);
-        // }, duration);
-
         // 使用 tween 实现滚动动画
         var coords = {
           y: currentY
@@ -146,9 +130,6 @@ var highlightElement = function(){
       }
     }
 
-    // for (let index = 0; index < dict.length; index++) {
-    //   document.querySelector(`#${dict[index].id}`).classList.add('offset');
-    // }
     document.querySelector(`#${dict[minIndex].id}`).classList.remove('offset');
 
     // 处理导航栏中的 aTag 
@@ -157,10 +138,8 @@ var highlightElement = function(){
     let liBrotherNodes = liTag.parentNode.children 
     for (let index = 0; index < liBrotherNodes.length; index++) {
       liBrotherNodes[index].classList.remove('highlight')
-      // toggleClass(liBrotherNodes[index], 'highlight')
     }
     liTag.classList.add('highlight')
-    // toggleClass(liTag, 'highlight')
   });  
 
 }
@@ -169,10 +148,10 @@ var __main = function () {
   // tween 需要的
   requestAnimationFrame(animate);
 
-  loadingAnimation();  
+  initLoadPageAnimation();  
   autoStickNavbar();
   displaySubmenu();
-  enableScrollPosition();
+  autoScrollElement();
   portfolioEvent();
   highlightElement();
 }
