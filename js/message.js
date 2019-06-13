@@ -1,21 +1,11 @@
 ! function () {
 
-  var log = console.log.bind(console)
+  let log = console.log.bind(console)
   let view = document.querySelector('#site-comments')
-
-  let controller = {
-    view: null,
-    commentform: null,
+  let model = {
     messageObject: null,
     tableName: 'Message',
     init: function () {
-      this.view = view
-      this.commentform = view.querySelector('#commentform')
-      this.initLeanCloud()
-      this.bindEvent()
-      this.fetchData()
-    },
-    initLeanCloud: function () {
       var APP_ID = 'JgCm0IiBH9kIpUYKSBXRqdxA-gzGzoHsz';
       var APP_KEY = 'KMV2jfE6pWiw4oK7nyPJutem';
 
@@ -25,6 +15,32 @@
       });
 
       this.messageObject = AV.Object.extend(this.tableName);
+    },
+    fetch: function () {
+      var query = new AV.Query(this.tableName)
+      return query.find();
+    },
+    save: function (username, content) {
+      var msgObject = new this.messageObject();
+      msgObject.set('UserName', username);
+      msgObject.set('Content', content);
+
+      return msgObject.save()
+    }
+
+  }
+  let controller = {
+    view: null,
+    model: null,
+    commentform: null,
+    init: function (view, model) {
+      this.view = view
+      this.model = model
+      this.commentform = view.querySelector('#commentform')
+      model.init()
+
+      this.bindEvent()
+      this.loadMessage()
     },
     bindEvent: function () {
       let formControls = view.querySelectorAll('.form-control')
@@ -50,13 +66,13 @@
       s = s.replace(/\"/g, "&quot;");
       return s;
     },
-    addNewData: function (data) {
+    addNewMessage: function (data) {
       let commentList = view.querySelector('.commentlist')
       let commentHtml = `<li class="comment">
       <div class="comment-body">
         <div class="comment-meta">
           <div class="avatar-box">
-            <img src="./images/headimgs/user1.png" class="avatar" alt="" srcset="">
+            <img src="./images/headimgs/user${Math.floor(Math.random() * 5 + 1)}.png" class="avatar" alt="" srcset="">
           </div>
           ${data.attributes.UserName}
         </div>
@@ -68,37 +84,51 @@
     </li>`;
       commentList.insertAdjacentHTML('beforeend', commentHtml)
     },
-    submitData: function () {
-      var msgObject = new this.messageObject();
-      msgObject.set('UserName', this.htmlEncodeByRegExp(this.commentform.querySelector('input[name=username]').value));
-      msgObject.set('Content', this.htmlEncodeByRegExp(this.commentform.querySelector('textarea[name=comment]').value));
-      if(msgObject.attributes.Content === ''){
-        this.commentform.querySelector('textarea[name=comment]').focus()
-        alert('不说点什么吗？')
-        return;
-      }
-      if(msgObject.attributes.UserName === ''){
-        this.commentform.querySelector('input[name=username]').focus()
-        alert('请留下你的大名')
-        return;
+    validData: function () {
+      let result = true
+      let userNameInput = this.commentform.querySelector('input[name=username]')
+      let contentInput = this.commentform.querySelector('textarea[name=comment]')
+
+      let userName = this.htmlEncodeByRegExp(userNameInput.value)
+      let content = this.htmlEncodeByRegExp(contentInput.value)
+      let errorMsg = []
+      if (userName === '') {
+        userNameInput.focus()
+        errorMsg.push('请留下你的大名')
+        result = false
       }
 
-      msgObject.save()
-        .then(function (msgObject) {
-          log('数据提交成功', msgObject)
-        }, function (error) {
-          log('数据提交失败', error)
-        })
-        .then(() => {
-          this.addNewData(msgObject)
+      if (content === '') {
+        contentInput.focus()
+        errorMsg.push('请填写内容')
+        result = false
+      }
+
+      return {
+        result,
+        errorMsg,
+        userName,
+        content
+      }
+
+    },
+    submitData: function () {
+      
+      let { result:success, errorMsg, userName, content} = this.validData()
+      if (success) {
+        this.model.save(userName, content).then((msgObject) => {
+          this.addNewMessage(msgObject)
           this.commentform.querySelector('textarea[name=comment]').value = ''
         });
+      }else{
+        alert(errorMsg.join('\n'))
+      }
+
     },
-    fetchData: function () {
-      var query = new AV.Query(this.tableName)
-      query.find().then((results) => {
+    loadMessage: function () {
+      this.model.fetch().then((results) => {
         results.forEach((r) => {
-          this.addNewData(r)
+          this.addNewMessage(r)
         })
       }, (error) => {
         log('获取数据失败', error)
@@ -106,6 +136,6 @@
     }
   }
 
-  controller.init()
+  controller.init(view, model)
 
 }.call()
