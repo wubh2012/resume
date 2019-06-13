@@ -37,6 +37,7 @@
     document.querySelector(`#${dict[minIndex].id}`).classList.remove('offset')
     document.querySelector(`#${dict[(minIndex - 1 < 0 ? 0 : minIndex - 1) ].id}`).classList.remove('offset')
 
+
     // 处理导航栏中的 aTag 
     processNavBarATag(dict[minIndex].id)
   }
