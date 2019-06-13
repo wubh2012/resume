@@ -13,6 +13,7 @@
       element.classList.add('offset')
     }
   }
+  console.log(dict)
 
   let processNavBarATag = function(elementId){
     let aTag = document.querySelector(`a[href="#${elementId}"]`)
@@ -33,7 +34,8 @@
         minIndex = index
       }
     }
-    document.querySelector(`#${dict[minIndex].id}`).classList.remove('offset');
+    document.querySelector(`#${dict[minIndex].id}`).classList.remove('offset')
+    document.querySelector(`#${dict[(minIndex - 1 < 0 ? 0 : minIndex - 1) ].id}`).classList.remove('offset')
 
     // 处理导航栏中的 aTag 
     processNavBarATag(dict[minIndex].id)
@@ -47,7 +49,7 @@
 
   let __main = function () {
     initDictData()
-    findClosetAndRemoveOffset()
+    //findClosetAndRemoveOffset()
     bindEvent()
   }
 
