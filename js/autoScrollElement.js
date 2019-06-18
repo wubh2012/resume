@@ -1,10 +1,10 @@
 ! function () {
   let log = console.log.bind(console)
 
-  let view = document.querySelector('.topNavBar')
+  let view = View('.topNavBar')
   let controller = {
     view: null,
-    init: function () {
+    init: function (view) {
       this.view = view
       this.initAnimation()
       this.bindEvent()
@@ -51,6 +51,6 @@
       }
     }
   }
-  controller.init()
+  controller.init(view)
 
 }.call()

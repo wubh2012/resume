@@ -13,7 +13,6 @@
       element.classList.add('offset')
     }
   }
-  console.log(dict)
 
   let processNavBarATag = function(elementId){
     let aTag = document.querySelector(`a[href="#${elementId}"]`)
@@ -50,7 +49,6 @@
 
   let __main = function () {
     initDictData()
-    //findClosetAndRemoveOffset()
     bindEvent()
   }
 

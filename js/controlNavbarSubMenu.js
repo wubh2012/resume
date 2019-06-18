@@ -2,7 +2,7 @@
   var view = document.querySelector('.topNavBar');
   var controller = {
     view: null,
-    init: function () {
+    init: function (view) {
       this.view = view
       this.bindEvent()
     },
@@ -25,7 +25,7 @@
       element.classList.remove('active')
     }
   }
-  controller.init()
+  controller.init(view)
 
 
 }.call()
